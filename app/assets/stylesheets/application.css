@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f9f9f9;
+  }
+  
+  nav {
+    justify-content: space-between;
+    display: flex;
+    font-size: 0.875em;
+    gap: 0.5rem;
+    /* max-width: 1024px; */
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #2C7BE5;
+
+  }
+  
+  nav a {
+    display: inline-block;
+  }
+  
+  main {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  
+  .notice {
+    color: green;
+  }
+  
+  section.aluno {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+  }
+  
+  section.aluno img {
+    border-radius: 8px;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20%;
+    background-color: #2C7BE5;
+  }
+
+  .navbar-brand > img {
+    width: 10.471rem;
+    height: 2.75rem;
+  }
+
+  .navbar-brand {
+    padding-right: 25em;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 1rem;
+  }

@@ -1,0 +1,4 @@
+class Professor < Usuario
+  
+  
+end
