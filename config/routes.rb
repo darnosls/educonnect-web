@@ -28,8 +28,11 @@ Rails.application.routes.draw do
   # delete "/alunos/:id", to: "alunos#destroy"
   
   resources :alunos
+  resources :contents
 
   root "home#index"
+
+ 
 
 
 
