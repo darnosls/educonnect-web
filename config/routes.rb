@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :courses
+  resources :users
   resources :dashboards
   resources :disciplines
   get "discipline/list"
