@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Dashboards" %>
+
+<h1>Dashboards</h1>
+
+<div id="dashboards">
+  <%= render @disciplines %>
+  <%= render @contents %>
+ 
+  <%= render @teachers %>
+</div>
+
+<%= link_to "New dashboard", new_dashboard_path %>

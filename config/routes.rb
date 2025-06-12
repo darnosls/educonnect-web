@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :disciplinas
-  get "disciplina/listar"
+  resources :dashboards
+  resources :disciplines
+  get "discipline/list"
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -16,20 +17,20 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # 
-  # get "/alunos", to: "alunos#index"
+  # get "/students", to: "students#index"
   
-  # get "/alunos/new", to: "alunos#new"
-  # post "/alunos", to: "alunos#create"
+  # get "/students/new", to: "students#new"
+  # post "/students", to: "students#create"
   
-  # get "/alunos/:id", to: "alunos#show"
+  # get "/students/:id", to: "students#show"
 
-  # get "/alunos/:id/edit", to: "alunos#edit"
-  # patch "/alunos/:id", to: "alunos#update"
-  # put "/alunos/:id", to: "alunos#update"
+  # get "/students/:id/edit", to: "students#edit"
+  # patch "/students/:id", to: "students#update"
+  # put "/students/:id", to: "students#update"
 
-  # delete "/alunos/:id", to: "alunos#destroy"
+  # delete "/students/:id", to: "students#destroy"
   
-  resources :alunos
+  resources :students
   resources :contents
 
   root "home#index"

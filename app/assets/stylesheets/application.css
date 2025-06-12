@@ -39,7 +39,6 @@
   }
   
   main {
-    max-width: 1024px;
     margin: 0 auto;
   }
   
@@ -47,13 +46,13 @@
     color: green;
   }
   
-  section.aluno {
+  section.student {
     display: flex;
     gap: 1rem;
     flex-direction: row;
   }
   
-  section.aluno img {
+  section.student img {
     border-radius: 8px;
     flex-basis: 50%;
     max-width: 50%;
@@ -79,4 +78,46 @@
   .nav-menu {
     display: flex;
     gap: 1rem;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+
+    width: 100%;
+  }
+
+
+
+  .hero {
+    width: 100%;
+    height: 25.1875rem;
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+    align-items: center;
+  }
+
+  h1 {
+
+    
+
+    color: #1A237E;
+    font-family: Poppins;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+
+  .button-cta {
+    width: 10.5rem;
+    height: 2.9375rem;
+    flex-shrink: 0;
+
+    border-radius: 0.3125rem;
+background: #FFA726;
   }

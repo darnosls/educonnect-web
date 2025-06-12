@@ -1,0 +1,22 @@
+<p><%= link_to "Voltar", students_path %></p>
+
+
+<section class="product">
+    <%= image_tag @student.featured_image if @student.featured_image.attached? %>
+
+    <section class="product-info">
+
+        <% cache @student do %>
+
+            <h1><%= @student.name %></h1>
+            <%= @student.biography %>
+        <% end %>
+
+
+
+        <% if authenticated? %>
+            <%= link_to "Editar", edit_student_path(@student) %>
+            <%= button_to "Excluir", @student, method: :delete, data: { turbo_confirm: "Você está certo disso?" } %>
+        <% end %>
+    </section>
+</section>

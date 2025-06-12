@@ -35,7 +35,24 @@ module Authentication
     end
 
     def after_authentication_url
-      session.delete(:return_to_after_authenticating) || root_url + "alunos#index"
+      user = Current.session&.user
+
+      if user&.student?
+        session.delete(:return_to_after_authenticating) || root_url + "contents#index"
+
+      elsif user&.teacher?
+        session.delete(:return_to_after_authenticating) || root_url + "teachers#index"
+
+      elsif user&.admin?
+        session.delete(:return_to_after_authenticating) || root_url + "dashboards#index"
+
+      elsif user&.collaborator?
+        session.delete(:return_to_after_authenticating) || root_url + "collaborators#index"
+
+      else
+        root_url
+
+      end
     end
 
     def start_new_session_for(user)

@@ -1,0 +1,41 @@
+<nav style="background-color: #333; padding: 0;">
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
+        <li style="margin: 0;">
+            <%= link_to 'Dashboard', admin_dashboard_path, class: ("navbar-link#{' active' if current_page?(admin_dashboard_path)}") %>
+        </li>
+        <li style="margin: 0;">
+            <%= link_to 'Usuários', admin_users_path, class: ("navbar-link#{' active' if current_page?(admin_users_path)}") %>
+        </li>
+        <li style="margin: 0;">
+            <%= link_to 'Cursos', admin_courses_path, class: ("navbar-link#{' active' if current_page?(admin_courses_path)}") %>
+        </li>
+        <li style="margin: 0;">
+            <%= link_to 'Disciplinas', admin_disciplines_path, class: ("navbar-link#{' active' if current_page?(admin_disciplines_path)}") %>
+        </li>
+        <li style="margin: 0;">
+            <%= link_to 'Conteúdos', admin_contents_path, class: ("navbar-link#{' active' if current_page?(admin_contents_path)}") %>
+        </li>
+        <li style="margin: 0;">
+            <%= link_to 'Comentários', admin_comments_path, class: ("navbar-link#{' active' if current_page?(admin_comments_path)}") %>
+        </li>
+        <li style="margin-left: auto; margin: 0;">
+            <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: "navbar-link" %>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    .navbar-link {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 16px 20px;
+        transition: background 0.2s;
+    }
+    .navbar-link:hover {
+        background: #444;
+    }
+    .navbar-link.active {
+        background: #004080;
+    }
+</style>

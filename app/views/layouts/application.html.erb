@@ -22,20 +22,45 @@
     <%= javascript_importmap_tags %>
   </head>
 
+  <% user = Current.session&.user %>
   <body>
+
+
     <nav>
+        <div class="navbar-brand" >
+          <%= image_tag("logo-final-BRANCA.png", :alt => "EduConenct", :class => "navbar-brand-logo") %>
+        </div>
+      <% if user&.admin?%>
+
+      <%= render "navbar_admin" %>
+      <% elsif user&.teacher? %>
+      <div class="teacher-bar">
+        <%= link_to "Dashboard de Professores", teacher_dashboard_path, class: "teacher-link" %>
+        <%= link_to "Minhas Disciplinas", teacher_disciplines_path, class: "teacher-link" %>
+        <%= link_to "Meus Conteúdos", teacher_contents_path, class: "teacher-link" %>
+        <%= button_to "Sair", session_path, method: :delete if authenticated? %>
+      </div>
+      <% elsif user&.student? %>
+      <div class="student-bar">
+        <%= link_to "Início", student_path(user), class: "student-link" %>
+        <%= button_to "Sair", session_path, method: :delete if authenticated? %>
+      </div>
+      <% else %>
+      <div>jjjjjjjjjjjjjjj</div>
+      <div class="top-bar">
+        <%= link_to "Início", root_path %>
+        <%= link_to "Entrar", new_session_path unless authenticated? %>
+      </div>  
+      <% end %>
+
       <div class="top-bar">
         <div class="navbar-brand" >
           <%= image_tag("logo-final-BRANCA.png", :alt => "EduConenct", :class => "navbar-brand-logo") %>
         </div>
-        
-        <div class="nav-menu">
-          <%= link_to "Home", root_path %>
-          <%= link_to "Login", new_session_path unless authenticated? %>
-          <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-        </div>
       </div>
     </nav>
+
+    <%= user %>
 
     <main>
       <%= yield %>

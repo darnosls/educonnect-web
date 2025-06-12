@@ -1,49 +1,81 @@
 class ContentsController < ApplicationController
-  include Authentication
+  before_action :set_content, only: %i[ show edit update destroy ]
 
+  # GET /contents or /contents.json
   def index
     @contents = Content.all
   end
 
+  # GET /contents/1 or /contents/1.json
   def show
-    @content = Content.find(params[:id])
   end
 
+  # GET /contents/new
   def new
     @content = Content.new
+
+    @disciplines = Discipline.all
   end
 
-  def create
-    @content = Content.new(content_params)
-    if @content.save
-      redirect_to @content
-    else
-      render :new
-    end
-  end
-
+  # GET /contents/1/edit
   def edit
-    @content = Content.find(params[:id])
   end
 
-  def update
-    @content = Content.find(params[:id])
-    if @content.update(content_params)
-      redirect_to @content
-    else
-      render :edit
+  # POST /contents or /contents.json
+  def create
+    print "Creating content with params: #{content_params.inspect}"
+
+
+    @content = Content.new(content_params)
+
+    @content.user = Current.user
+
+    print "Content created: #{@content.inspect}"
+
+
+    respond_to do |format|
+      if @content.save
+        format.html { redirect_to @content, notice: "Content was successfully created." }
+        format.json { render :show, status: :created, location: @content }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @content.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  # PATCH/PUT /contents/1 or /contents/1.json
+  def update
+    respond_to do |format|
+      if @content.update(content_params)
+        format.html { redirect_to @content, notice: "Content was successfully updated." }
+        format.json { render :show, status: :ok, location: @content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @content.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /contents/1 or /contents/1.json
   def destroy
-    @content = Content.find(params[:id])
-    @content.destroy
-    redirect_to contents_path
+    @content.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to contents_path, status: :see_other, notice: "Content was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_content
+      @content = Content.find(params.expect(:id))
+    end
 
-  def content_params
-    params.require(:content).permit(:title, :body)
-  end
+    # Only allow a list of trusted parameters through.
+    def content_params
+      # params.fetch(:content, {})
+      params.require(:content).permit(:name, :title, :status, :description, :thumbnail, :published_at, :role, :user_id, :discipline_id, :content) # Assuming `content` is a rich text field
+    end
 end
