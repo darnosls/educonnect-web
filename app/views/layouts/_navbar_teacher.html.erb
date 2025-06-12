@@ -1,0 +1,6 @@
+<div class="teacher-bar">
+        <%= link_to "Dashboard de Professores", teacher_dashboard_path, class: "teacher-link" %>
+        <%= link_to "Minhas Disciplinas", teacher_disciplines_path, class: "teacher-link" %>
+        <%= link_to "Meus Conteúdos", teacher_contents_path, class: "teacher-link" %>
+        <%= button_to "Sair", session_path, method: :delete if authenticated? %>
+      </div>

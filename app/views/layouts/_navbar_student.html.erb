@@ -1,0 +1,4 @@
+<div class="student-bar">
+        <%= link_to "Início", student_path(user), class: "student-link" %>
+        <%= button_to "Sair", session_path, method: :delete if authenticated? %>
+      </div>

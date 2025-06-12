@@ -1,22 +1,22 @@
 <nav style="background-color: #333; padding: 0;">
     <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
         <li style="margin: 0;">
-            <%= link_to 'Dashboard', admin_dashboard_path, class: ("navbar-link#{' active' if current_page?(admin_dashboard_path)}") %>
+            <%= link_to 'Dashboard', dashboards_path, class: ("navbar-link#{' active' if current_page?(dashboards_path)}") %>
         </li>
         <li style="margin: 0;">
-            <%= link_to 'Usuários', admin_users_path, class: ("navbar-link#{' active' if current_page?(admin_users_path)}") %>
+            <%= link_to 'Usuários', users_path, class: ("navbar-link#{' active' if current_page?(users_path)}") %>
         </li>
         <li style="margin: 0;">
-            <%= link_to 'Cursos', admin_courses_path, class: ("navbar-link#{' active' if current_page?(admin_courses_path)}") %>
+            <%= link_to 'Cursos', courses_path, class: ("navbar-link#{' active' if current_page?(courses_path)}") %>
         </li>
         <li style="margin: 0;">
-            <%= link_to 'Disciplinas', admin_disciplines_path, class: ("navbar-link#{' active' if current_page?(admin_disciplines_path)}") %>
+            <%= link_to 'Disciplinas', disciplines_path, class: ("navbar-link#{' active' if current_page?(disciplines_path)}") %>
         </li>
         <li style="margin: 0;">
-            <%= link_to 'Conteúdos', admin_contents_path, class: ("navbar-link#{' active' if current_page?(admin_contents_path)}") %>
+            <%= link_to 'Conteúdos', contents_path, class: ("navbar-link#{' active' if current_page?(contents_path)}") %>
         </li>
         <li style="margin: 0;">
-            <%= link_to 'Comentários', admin_comments_path, class: ("navbar-link#{' active' if current_page?(admin_comments_path)}") %>
+            <%= link_to 'Comentários', comments_path, class: ("navbar-link#{' active' if current_page?(comments_path)}") %>
         </li>
         <li style="margin-left: auto; margin: 0;">
             <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: "navbar-link" %>
