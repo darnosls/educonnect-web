@@ -1,11 +1,215 @@
 <% content_for :title, "New user" %>
 
-<h1>New user</h1>
 
-<%= render "form", user: @user %>
+<div class="new-user-content">
+  <div class="side-content-background">
 
-<br>
+  </div>
+  <div class="side-content-new-form">
 
-<div>
-  <%= link_to "Back to users", users_path %>
+    <h2>Junte-se a nós, crie uma Conta</h2>
+
+<div class="tabs">
+  <button id="tab-aluno" class="active">Aluno</button>
+  <button id="tab-professor">Professor</button>
 </div>
+
+<%= form_with url: "/users", method: :post, local: true do |f| %>
+    <div id="form-aluno" class="form-panel active">
+      <%= f.label :name, "Nome" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email_address %>
+      <%= f.email_field :email_address %>
+
+      <%= f.label :phone, "Celular" %>
+      <%= f.telephone_field :phone %>
+
+      <%= f.label :password, "Senha" %>
+      <%= f.password_field :password %>
+
+      <%= f.label :ra, "RA" %>
+      <%= f.text_field :ra %>
+
+      <%= f.label :course, "Curso" %>
+      <%= f.text_field :course %>
+
+      <%= f.label :start_year, "Ano de ingresso" %>
+      <%= f.text_field :start_year %>
+    </div>
+
+    <div id="form-professor" class="form-panel">
+      <%= f.label :name, "Nome" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :phone, "Celular" %>
+      <%= f.telephone_field :phone %>
+
+      <%= f.label :password, "Senha" %>
+      <%= f.password_field :password %>
+
+      <div class="field-group">
+        <%= f.label :subjects, "Disciplinas" %>
+        <%= text_field_tag "subjects[]", nil %>
+
+        <%= f.label :days, "Dias da Semana" %>
+        <%= text_field_tag "days[]", nil %>
+      </div>
+
+      <%= f.label :period, "Período" %>
+      <%= f.text_field :period %>
+
+      <%= link_to "+ Adicionar mais disciplina", "#", id: "add-subject", class: "add-link" %>
+    </div>
+
+    <div class="terms">
+      <%= check_box_tag :terms %>
+      <label>Li e concordo com o <a href="#">termo de aceite</a>.</label>
+    </div>
+
+    <%= f.submit "Entrar", class: "submit-button" %>
+  <% end %>
+
+    <%= link_to "Já tenho uma conta", "/login", class: "login-link" %>
+
+    <div>
+      <%= link_to "Back to users", users_path %>
+    </div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+  .new-user-content {
+    display: flex;
+
+  }
+
+  .side-content-background {
+    
+    min-width: 50%;
+
+  }
+  h2 {
+  font-weight: bold;
+  color: #1c1c7e;
+}
+
+.tabs {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 0.8rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  background: #f2f2f2;
+  color: #1c1c7e;
+}
+
+.tabs button.active {
+  background: #40c463;
+  color: white;
+}
+
+.form-panel {
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-panel.active {
+  display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.field-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.add-link {
+  display: block;
+  margin-top: 0.5rem;
+  color: #1c80e3;
+  text-decoration: none;
+}
+
+.terms {
+  margin: 1rem 0;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #ffa726;
+  color: #1c1c7e;
+  font-weight: bold;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-link {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #1c80e3;
+}
+
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const tabAluno = document.getElementById("tab-aluno");
+  const tabProfessor = document.getElementById("tab-professor");
+  const formAluno = document.getElementById("form-aluno");
+  const formProfessor = document.getElementById("form-professor");
+
+  tabAluno.addEventListener("click", function () {
+    tabAluno.classList.add("active");
+    tabProfessor.classList.remove("active");
+    formAluno.classList.add("active");
+    formProfessor.classList.remove("active");
+  });
+
+  tabProfessor.addEventListener("click", function () {
+    tabProfessor.classList.add("active");
+    tabAluno.classList.remove("active");
+    formProfessor.classList.add("active");
+    formAluno.classList.remove("active");
+  });
+
+  const addLink = document.getElementById("add-subject");
+  addLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    const group = document.createElement("div");
+    group.classList.add("field-group");
+    group.innerHTML = `
+      <input type="text" name="subjects[]" placeholder="Disciplinas">
+      <input type="text" name="days[]" placeholder="Dias da Semana">
+    `;
+    formProfessor.insertBefore(group, addLink);
+  });
+});
+
+</script>

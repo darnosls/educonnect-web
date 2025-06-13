@@ -22,6 +22,13 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
+
+    print("Área Administrativa \n")
+    print("Área Administrativa \n")
+    print("Área Administrativa \n")
+    print(user_params.inspect)
+    print("Área Administrativa \n")
+    print("Área Administrativa \n")
     @user = User.new(user_params)
 
     respond_to do |format|
