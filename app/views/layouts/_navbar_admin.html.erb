@@ -1,4 +1,7 @@
 <nav style="background-color: #333; padding: 0;">
+    <div class="navbar-brand" >
+          <%= image_tag("logo-final-BRANCA.png", :alt => "EduConenct", :class => "navbar-brand-logo") %>
+        </div>
     <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
         <li style="margin: 0;">
             <%= link_to 'Dashboard', dashboards_path, class: ("navbar-link#{' active' if current_page?(dashboards_path)}") %>
@@ -18,8 +21,8 @@
         <li style="margin: 0;">
             <%= link_to 'Comentários', comments_path, class: ("navbar-link#{' active' if current_page?(comments_path)}") %>
         </li>
-        <li style="margin-left: auto; margin: 0;">
-            <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: "navbar-link" %>
+        <li style="margin: 0;">
+        <%= button_to "Sair", session_path, method: :delete if authenticated? %>
         </li>
     </ul>
 </nav>
@@ -37,5 +40,9 @@
     }
     .navbar-link.active {
         background: #004080;
+    }
+
+    li {
+        margin: 0;
     }
 </style>

@@ -1,8 +1,12 @@
 
+
+<% if !authenticated?%>
     <section class="hero">
         <h1>Aprenda e Ensine de Forma Inteligente</h1>
         <p>Conectamos alunos e professores em uma única plataforma eficiente, intuitiva e acessível.</p>
-        <button class="button-cta">Comece Agora</button>
+
+        <%= button_to "Comece Agora", new_user_path, method: :get, class: "button-cta" %>
+      
     </section>
     <section class="about">
         <h2>Sobre a Plataforma</h2>
@@ -19,8 +23,74 @@
             na jornada universitária.
         </p>
     </section>
+<% elsif authenticated? && Current.session&.user['role'] == 'student' %>
+    <section class="hero-find">
+    <h1>O que você procura aprender?</h1>
+
+
+    <div class="find">
+        <input type="text" placeholder="Digite sua busca..." />
+        <button class="button-cta">Buscar</button>
+    </div>
+
+    <section class="list-contents-disciplines">
+        <h2>Conteúdos Disponíveis</h2>
+        <ul>
+            <% @disciplines.each do |discipline| %>
+                <li>
+                    <%= link_to discipline.name, discipline_path(discipline) %>
+                </li>
+            <% end %>
+        </ul>
+    </section>
+<% elsif authenticated? && Current.session&.user['role'] == 'teacher' %>
+    <section class="hero-find">
+    <h1>Área do Professor</h1>
+    
+
+    <section class="list-contents-disciplines">
+        <h2>Conteúdos Disponíveis</h2>
+        <ul>
+            <% @disciplines.each do |discipline| %>
+                <li>
+                    <%= link_to discipline.name, discipline_path(discipline) %>
+                </li>
+            <% end %>
+        </ul>
+    </section>
+<% elsif authenticated? && Current.session&.user['role'] == 'admin' %>
+    <section class="hero-find">
+    <h1>Área Administrativa</h1>
+
+    <section class="list-contents-disciplines">
+        <h2>Conteúdos Disponíveis</h2>
+        <ul>
+            <% @disciplines.each do |discipline| %>
+                <li>
+                    <%= link_to discipline.name, discipline_path(discipline) %>
+                </li>
+            <% end %>
+        </ul>
+    </section>
+<% elsif authenticated? && Current.session&.user['role'] == 'collaborator' %>
+
+    <%= Current.session&.user['role'] %>
+    <section class="hero-find">
+        <h1>Área do Colaborador</h1>
+    </section>
+<% end %>
+
+
     <section class="footer">
         <p>EduConnect © 2025</p>
     </section>
 
+
+<style>
+    .hero-find {
+        width: 35.125rem;
+        height: 2.375rem;
+        background-color: #FFF;
+    }
+</style>
 

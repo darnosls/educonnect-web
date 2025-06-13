@@ -22,31 +22,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <% user = Current.session&.user %>
+  <% @user = Current.session&.user %>
   <body>
-
-
-    <nav>
-        <div class="navbar-brand" >
-          <%= image_tag("logo-final-BRANCA.png", :alt => "EduConenct", :class => "navbar-brand-logo") %>
-        </div>
-      <% if user&.admin? %>
-        <%= render "/layouts/navbar_admin" %>
-      <% elsif user&.teacher? %>
-        <%= render "navbar_teacher" %>
-      <% elsif user&.student? %>
-        <%= render "navbar_student" %>
-      <% else %>
-  
-      <div class="top-bar">
-        <%= link_to "Início", root_path %>
-        <%= link_to "Entrar", new_session_path unless authenticated? %>
-      </div>  
+      <% if @user&.admin? && authenticated?%>
+          <%= render "/layouts/navbar_admin" %>
+        <% elsif @user&.teacher? && authenticated? %>
+          <%= render "/layouts/navbar_teacher" %>
+        <% elsif @user&.student? && authenticated? %>
+          <%= render "/layouts/navbar_student" %>
+        <% else %>
+          <%= render "/layouts/navbar" %>
       <% end %>
-    </nav>
-
-    <%= user %>
-
+   
     <main>
       <%= yield %>
     </main>

@@ -44,7 +44,13 @@ module Authentication
         session.delete(:return_to_after_authenticating) || root_url + "teachers#index"
 
       elsif user&.admin?
-        session.delete(:return_to_after_authenticating) || root_url + "dashboards#index"
+        print("Área Administrativa \n")
+        print("Área Administrativa \n")
+        print("Área Administrativa \n")
+        print("Área Administrativa \n")
+        print("Área Administrativa \n")
+        print("Área Administrativa \n")
+        session.delete(:return_to_after_authenticating) || root_url + "contents#index"
 
       elsif user&.collaborator?
         session.delete(:return_to_after_authenticating) || root_url + "collaborators#index"

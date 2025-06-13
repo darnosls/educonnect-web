@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  resources :abouts
+  resources :comments
   resources :courses
   resources :users
-  resources :dashboards
+  scope module: "admin_controller" do
+    resources :dashboards
+  end
   resources :disciplines
   get "discipline/list"
   resource :session

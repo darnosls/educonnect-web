@@ -1,4 +1,100 @@
-<div class="student-bar">
-        <%= link_to "Início", student_path(user), class: "student-link" %>
-        <%= button_to "Sair", session_path, method: :delete if authenticated? %>
-      </div>
+
+<nav class="navbar-student">
+    <div class="navbar-brand">
+        <%= image_tag("logo-final-BRANCA.png", alt: "EduConenct", class: "navbar-brand-logo") %>
+    </div>
+    <ul class="student-bar">
+        <li>
+            <%= link_to "Início", root_path, class: "student-link#{' active' if current_page?(root_path)}" %>
+        </li>
+
+        <li class="<%= "#{'active' if current_page?(contents_path) }"%>">
+            <%= link_to "Conteúdos", contents_path, class: "student-link" %>
+        </li>
+
+        <li>
+            <%= link_to "Sobre", root_path, class: "student-link" %>
+        </li>
+    </ul>
+    <div class="link-perfil-container">
+        <%= button_to "Sair", session_path, method: :delete, class: "link-logout" if authenticated? %>
+        <span class="link-perfil" >
+            <%= "Olá, #{Current.session&.user&.name}" if Current.session&.user %>
+        </span>
+    </div>
+</nav>
+
+<style>
+.navbar-student {
+    height: 4rem;
+    background-color: #2C7BE5;
+    padding: 0;
+}
+/* .navbar-brand {
+    display: inline-block;
+    vertical-align: middle;
+} */
+/* .student-bar {
+    display: inline-block;
+    margin-left: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+} */
+
+
+ul {
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+}
+
+.student-bar li {
+    padding-top: 0.5rem;
+     margin: 0;
+    display: flex;
+}
+.student-link {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+.active {
+    border-bottom: 0.5rem solid #4CAF50;
+}
+.separator {
+    color: #fff;
+    margin: 0 0.5rem;
+}
+
+.link-perfil-container {
+    width: 4.6875rem;
+    height: 4rem;
+    flex-shrink: 0;
+}
+
+.link-perfil {
+    width: 4.6875rem;
+    height: 0.6875rem;
+    flex-shrink: 0;
+    color: #F5F5F5;
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+
+.link-logout {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+</style>
